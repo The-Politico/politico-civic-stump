@@ -1,5 +1,7 @@
 import os
 
+import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -17,6 +19,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'entity',
+    'geography',
+    'government',
+    'election',
     'stump',
 ]
 
@@ -93,10 +99,5 @@ STATIC_URL = '/static/'
 #########################
 # stump settings
 
-STUMP_SECRET_KEY = ''
-STUMP_AWS_ACCESS_KEY_ID = ''
-STUMP_AWS_SECRET_ACCESS_KEY = ''
-STUMP_AWS_REGION = ''
-STUMP_AWS_S3_BUCKET = ''
-STUMP_CLOUDFRONT_ALTERNATE_DOMAIN = ''
-STUMP_S3_UPLOAD_ROOT = ''
+STUMP_GOOGLE_MAPS_GEOCODING_API_KEY = os.getenv(
+    'GOOGLE_MAPS_GEOCODING_API_KEY')

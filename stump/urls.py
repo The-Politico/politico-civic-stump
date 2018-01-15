@@ -1,7 +1,13 @@
-from django.urls import path
+from django.urls import include, path
+from rest_framework import routers
 
-from .views import Home
+from .viewsets import AppearanceTypeViewSet, AppearanceViewSet
+
+router = routers.DefaultRouter()
+
+router.register(r'appearances', AppearanceViewSet)
+router.register(r'appearance-types', AppearanceTypeViewSet)
 
 urlpatterns = [
-    path('', Home.as_view(), name='stump-home'),
+    path('api/', include(router.urls)),
 ]

@@ -1,13 +1,15 @@
 ![POLITICO](https://rawgithub.com/The-Politico/src/master/images/logo/badge.png)
 
-# stump
+# django-politico-civic-stump
+
+Track candidates.
 
 ### Quickstart
 
 1. Install the app.
 
   ```
-  $ pip install stump
+  $ pip install django-politico-civic-stump
   ```
 
 2. Add the app to your Django project and configure settings.
@@ -16,62 +18,51 @@
   INSTALLED_APPS = [
       # ...
       'rest_framework',
+      'entity',
+      'geography',
+      'government',
+      'election',
       'stump',
   ]
 
   #########################
   # stump settings
 
-  STUMP_SECRET_KEY = ''
-  STUMP_AWS_ACCESS_KEY_ID = ''
-  STUMP_AWS_SECRET_ACCESS_KEY = ''
-  STUMP_AWS_REGION = ''
-  STUMP_AWS_S3_BUCKET = ''
-  STUMP_CLOUDFRONT_ALTERNATE_DOMAIN = ''
-  STUMP_S3_UPLOAD_ROOT = ''
+  STUMP_GOOGLE_MAPS_GEOCODING_API_KEY = '<YOUR KEY>'
+  STUMP_API_AUTHENTICATION_CLASS = 'rest_framework.authentication.BasicAuthentication' # default
+  STUMP_API_PERMISSION_CLASS = 'rest_framework.permissions.IsAdminUser' # default
+  STUMP_API_PAGINATION_CLASS = 'stump.pagination.ResultsPagination' # default
   ```
 
-### Developing
+  ### Developing
 
-##### Running a development server
+  ##### Running a development server
 
-Developing python files? Move into example directory and run the development server with pipenv.
+  Move into the example directory, install dependencies and run the development server with pipenv.
 
-  ```
-  $ cd example
-  $ pipenv run python manage.py runserver
-  ```
+    ```
+    $ cd example
+    $ pipenv install
+    $ pipenv run python manage.py runserver
+    ```
 
-Developing static assets? Move into the pluggable app's staticapp directory and start the node development server, which will automatically proxy Django's development server.
+  ##### Setting up a PostgreSQL database
 
-  ```
-  $ cd stump/staticapp
-  $ gulp
-  ```
+  1. Run the make command to setup a fresh database.
 
-Want to not worry about it? Use the shortcut make command.
+    ```
+    $ make database
+    ```
 
-  ```
-  $ make dev
-  ```
+  2. Add a connection URL to `example/.env`.
 
-##### Setting up a PostgreSQL database
+    ```
+    DATABASE_URL="postgres://localhost:5432/stump"
+    ```
 
-1. Run the make command to setup a fresh database.
+  3. Run migrations from the example app.
 
-  ```
-  $ make database
-  ```
-
-2. Add a connection URL to the `.env` file.
-
-  ```
-  DATABASE_URL="postgres://localhost:5432/stump"
-  ```
-
-3. Run migrations from the example app.
-
-  ```
-  $ cd example
-  $ pipenv run python manage.py migrate
-  ```
+    ```
+    $ cd example
+    $ pipenv run python manage.py migrate
+    ```
