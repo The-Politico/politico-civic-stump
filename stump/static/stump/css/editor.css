@@ -8,8 +8,11 @@
   margin-top: 1px;
 }
 
-.CodeMirror{
-  font-size: 18px;
+.CodeMirror, .editor-preview p{
+  font-size: 16px;
+}
+.editor-preview{
+  background-color: #e4e4e4;
 }
 
 .CodeMirror .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word){

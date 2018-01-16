@@ -16,6 +16,7 @@ if (!!simplemdeJQuery) {
       var uuid = simplemdeJQuery(elem).attr('data-uuid');
       var simplemde = new SimpleMDE({
         element: elem,
+        placeholder: "Write paragraph text in Markdown syntax using the toolbar.",
         status: false,
         forceSync: true,
         toolbar: ["bold", "italic", "|", "link", "|", "preview"],
