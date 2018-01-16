@@ -3,6 +3,7 @@ import datetime
 from django.db import models
 from election.models import Candidate
 from entity.fields import CountryField, StateField
+from stump.fields import MarkdownField
 
 
 class Appearance(models.Model):
@@ -24,7 +25,7 @@ class Appearance(models.Model):
     lat = models.FloatField(blank=True, null=True)
     lon = models.FloatField(blank=True, null=True)
     # Why
-    description = models.TextField(blank=True, null=True)
+    description = MarkdownField(blank=True, null=True)
 
     @property
     def person(self):
