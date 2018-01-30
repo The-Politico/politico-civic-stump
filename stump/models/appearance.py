@@ -52,5 +52,12 @@ class Appearance(models.Model):
         )
 
     class Meta:
-        unique_together = ("candidate", "date", "city", "state", "country",)
+        unique_together = (
+            "candidate",
+            "date",
+            "city",
+            "state",
+            "country",
+            "appearance_type",
+        )
         ordering = ['-date']
